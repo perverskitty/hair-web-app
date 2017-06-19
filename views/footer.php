@@ -1,6 +1,9 @@
-    <footer>
-
-      <p>&copy; My Web App 2017</p>
+  <!-- Bootstrap sticky footer -->  
+  <footer class="footer">
+      
+      <div class="container">
+        <p>&copy; My Web App 2017</p>
+      </div>
 
     </footer>
 
