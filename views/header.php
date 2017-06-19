@@ -10,10 +10,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     
+    <!-- My custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
   </head>
   
   <body>
     
+    <!-- Bootstrap navbar -->
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
       
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
