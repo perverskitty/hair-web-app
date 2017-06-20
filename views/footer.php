@@ -24,6 +24,7 @@
             </button>
           </div>
           <div class="modal-body">
+            <div class="alert alert-danger" id="signinAlert"></div>
             <form>
               <input type="hidden" id="signinActive" name="signinActive" value="1">
               <div class="form-group">
@@ -78,9 +79,19 @@
           data: "email=" + $("#email").val() + "&password=" + $("#password").val() + "&signinActive=" + $("#signinActive").val(),
           success: function(result) {
             
-            alert(result);
+            if (result =="1") {
+              
+              // do this when signed in
+              window.location.assign("http://localhost/projects/hair-web-app/");
+              
+            } else {
+              
+              // do this when sign in failed
+              $("#signinAlert").html(result).show();
+              
+            }
+            
           }
-          
           
         })
         

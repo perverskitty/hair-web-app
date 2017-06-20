@@ -48,7 +48,7 @@
       } else {
         
         // email address and/or password not found
-        $error = "Could not find that email/password combination - please try again";
+        $error = "Email/password combination not found - please try again";
           
       }    
       

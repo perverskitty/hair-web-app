@@ -6,6 +6,9 @@
   padding-right: 15px;
 }
 
+#signinAlert {
+  display: none;
+}
 
 
 /* Sticky footer styles
