@@ -32,10 +32,35 @@
     
     // perform 'sign in'
     if ($_POST['signinActive'] == "1") { 
-    
-      $query = "SELECT * FROM users WHERE email = "
+      
+      // check for user record with email match
+      $query = "SELECT * FROM users WHERE email = '".mysqli_real_escape_string($link, $_POST['email'])."' LIMIT 1";
+      $result = mysqli_query($link, $query);
+      
+      // fetch associated user record
+      $row = mysqli_fetch_assoc($result); 
+        
+      if ($row['password'] == md5(md5($row['id']).$_POST['password'])) {
+        
+        // password match - successful sign in
+        echo 1;
+          
+      } else {
+        
+        // email address and/or password not found
+        $error = "Could not find that email/password combination - please try again";
+          
+      }    
       
     }
+    
+    if ($error != "") {
+      
+      echo $error;
+      exit();
+      
+    }
+    
   }
   
 
@@ -66,7 +91,7 @@
       
     }
     
-    // query whether email address already exists in database
+    // check whether email address already exists in database
     $query = "SELECT * FROM users WHERE email = '".mysqli_real_escape_string($link, $_POST['email'])."' LIMIT 1";
     $result = mysqli_query($link, $query);
     
