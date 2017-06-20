@@ -18,7 +18,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Sign in</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -36,8 +36,8 @@
             </form>
           </div>
           <div class="modal-footer">
-            <a id="toggleLogin" href="#">Need help?</a>
-            <button type="button" class="btn btn-primary">Login</button>
+            <a id="toggleSignIn" href="#">Forgot email or password?</a>
+            <button type="button" class="btn btn-primary">Sign in</button>
           </div>
         </div>
       </div>

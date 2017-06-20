@@ -40,7 +40,7 @@
         </ul>
     
         <div class="form-inline">
-          <button class="btn btn-outline-success" data-toggle="modal" data-target="#myModal">Login</button>
+          <button class="btn btn-outline-success" data-toggle="modal" data-target="#myModal">Sign in</button>
         </div>
         
       </div>
