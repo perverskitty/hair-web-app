@@ -67,6 +67,12 @@
           $("#toggleSignin").html("Forgot email or password?");
           
         }
+      })
+      
+      // function for signing in a user or sending a sign in recovery email
+      $("#signinButton").click(function() {
+        
+        alert("hi!");
         
       })
 
