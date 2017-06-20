@@ -72,7 +72,17 @@
       // function for signing in a user or sending a sign in recovery email
       $("#signinButton").click(function() {
         
-        alert("hi!");
+        $.ajax({
+          type: "POST",
+          url: "actions.php?action=signin",
+          data: "email=" + $("#email").val() + "&password=" + $("#password").val() + "&signinActive=" + $("#signinActive").val(),
+          success: function(result) {
+            
+            alert(result);
+          }
+          
+          
+        })
         
       })
 
