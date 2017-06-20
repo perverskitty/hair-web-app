@@ -3,7 +3,7 @@
   include("functions.php");
 
 
-  // Action for 'sign in'
+  // --SIGN IN / RESET PASSWORD ACTION--
   if ($_GET['action'] == "signin") {
     
     // validate email and password
@@ -13,7 +13,7 @@
       
       $error = "An email address is required";
       
-    } else if (!$_POST['password']) {
+    } else if (!$_POST['password'] && $_POST['signinActive'] == "1") {
       
       $error = "A password is required";
       
@@ -55,6 +55,13 @@
           
       }    
       
+    } else if ($_POST['signinActive'] == "0") {
+      
+      // perform 'send link to reset forgotten password'
+      
+      // code to be written here
+      echo 0;
+      
     }
     
     if ($error != "") {
@@ -67,7 +74,8 @@
   }
   
 
-  // Action for 'sign up'
+
+  // --SIGN UP ACTION--
   if ($_GET['action'] == "signup") {
     
     // validate email and password

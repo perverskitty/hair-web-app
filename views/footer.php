@@ -41,7 +41,7 @@
             
           </div>
           <div class="modal-footer">
-            <a id="toggleSignin" href="#">Forgot email or password?</a>
+            <a id="toggleSignin" href="#">Forgot password?</a>
             <button type="button" class="btn btn-primary" id="signinButton">Sign in</button>
           </div>
         </div>
@@ -59,6 +59,8 @@
           // toggle from 'sign in' to 'sign in help'
           $("#signinActive").val("0");
           $("#signinModalTitle").html("Having trouble signing in?");
+          $("#signinAlert").hide();
+          $("#signinHelpAlert").hide();
           $("#emailLabel").html("<p><br>Enter your email and we'll send you a link to reset a forgotten password. If you're having problems, please visit the salon or call us.</p>");
           $("#password").val("");
           $("#passwordGroup").hide();
@@ -70,6 +72,8 @@
           // toggle from 'sign in help' to 'sign in'
           $("#signinActive").val("1");
           $("#signinModalTitle").html("Sign in");
+          $("#signinAlert").hide();
+          $("#signinHelpAlert").hide();
           $("#emailLabel").html("Email");
           $("#passwordGroup").show();
           $("#signinButton").html("Sign in");
@@ -92,9 +96,16 @@
               // do this when signed in
               window.location.assign("http://localhost/projects/hair-web-app/");
               
+            } else if (result =="0") {
+              
+              // do this when a reset password link has been emailed 
+              $("#signinAlert").html("").hide();
+              $("#signinHelpAlert").html("We've emailed you a link to reset your password").show();
+              
             } else {
               
-              // do this when sign in failed
+              // do this when there's an error
+              $("#signinHelpAlert").html("").hide();
               $("#signinAlert").html(result).show();
               
             }
