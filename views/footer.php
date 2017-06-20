@@ -28,10 +28,10 @@
             <form>
               <input type="hidden" id="signinActive" name="signinActive" value="1">
               <div class="form-group">
-                <label for="email">Email</label>
+                <label id="emailLabel" for="email">Email</label>
                 <input type="email" class="form-control" id="email" placeholder="Email address">
               </div>
-              <div class="form-group">
+              <div class="form-group" id="passwordGroup">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Password">
               </div>
@@ -56,6 +56,8 @@
           // toggle from 'sign in' to 'sign in help'
           $("#signinActive").val("0");
           $("#signinModalTitle").html("Having trouble signing in?");
+          $("#emailLabel").html("<p><br>Enter your email and we'll send you a link to reset a forgotten password. If you're having problems, please visit the salon or call us.</p>");
+          $("#passwordGroup").hide();
           $("#signinButton").html("Continue");
           $("#toggleSignin").html("Return to sign in");
           
@@ -64,6 +66,8 @@
           // toggle from 'sign in help' to 'sign in'
           $("#signinActive").val("1");
           $("#signinModalTitle").html("Sign in");
+          $("#emailLabel").html("Email");
+          $("#passwordGroup").show();
           $("#signinButton").html("Sign in");
           $("#toggleSignin").html("Forgot email or password?");
           
