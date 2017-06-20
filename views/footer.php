@@ -25,6 +25,7 @@
           </div>
           <div class="modal-body">
             <form>
+              <input type="hidden" name="signinActive" value="1">
               <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" placeholder="Email address">
@@ -36,12 +37,24 @@
             </form>
           </div>
           <div class="modal-footer">
-            <a id="toggleSignIn" href="#">Forgot email or password?</a>
+            <a id="toggleSignin" href="#">Forgot email or password?</a>
             <button type="button" class="btn btn-primary">Sign in</button>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- My custom JavaScript that will be moved into its own file later -->
+    <script>
+      
+      // toggle between signin and signin help
+      $("#toggleSignin").click(function() {
+        
+        alert("hi!");
+        
+      })
+
+    </script>
 
   </body>
 
