@@ -1,5 +1,8 @@
 <?php
 
+  // start a session
+  session_start();
+
   // connection to my database
   $link = mysqli_connect("localhost", "root", "", "hairdb");
 

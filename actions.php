@@ -44,6 +44,9 @@
         
         // password match - successful sign in
         echo 1;
+        
+        // set session id to user id
+        $_SESSION['id'] = $row['id'];
           
       } else {
         
@@ -113,6 +116,9 @@
         
         // sign up success
         echo 1;
+        
+        // set session id to new user's id
+        $_SESSION['id'] = mysqli_insert_id($link);
         
       } else {
         
