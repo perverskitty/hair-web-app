@@ -14,18 +14,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
     <!-- Bootstrap modal that appears when login button is clicked -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="signinModalTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Sign in</h5>
+            <h5 class="modal-title" id="signinModalTitle">Sign in</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <form>
-              <input type="hidden" name="signinActive" value="1">
+              <input type="hidden" id="signinActive" name="signinActive" value="1">
               <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" placeholder="Email address">
@@ -38,19 +38,35 @@
           </div>
           <div class="modal-footer">
             <a id="toggleSignin" href="#">Forgot email or password?</a>
-            <button type="button" class="btn btn-primary">Sign in</button>
+            <button type="button" class="btn btn-primary" id="signinButton">Sign in</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- My custom JavaScript that will be moved into its own file later -->
+    <!-- My custom JavaScript to be moved into its own file later in development -->
     <script>
       
-      // toggle between signin and signin help
+      // function for toggling between 'sign in' and 'sign in help' modes
       $("#toggleSignin").click(function() {
         
-        alert("hi!");
+        if ($("#signinActive").val() == "1") {
+          
+          // toggle from 'sign in' to 'sign in help'
+          $("#signinActive").val("0");
+          $("#signinModalTitle").html("Having trouble signing in?");
+          $("#signinButton").html("Continue");
+          $("#toggleSignin").html("Return to sign in");
+          
+        } else {
+          
+          // toggle from 'sign in help' to 'sign in'
+          $("#signinActive").val("1");
+          $("#signinModalTitle").html("Sign in");
+          $("#signinButton").html("Sign in");
+          $("#toggleSignin").html("Forgot email or password?");
+          
+        }
         
       })
 
