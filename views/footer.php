@@ -62,6 +62,7 @@
           $("#signinAlert").hide();
           $("#signinHelpAlert").hide();
           $("#emailLabel").html("<p><br>Enter your email and we'll send you a link to reset a forgotten password. If you're having problems, please visit the salon or call us.</p>");
+          $("#email").val("");
           $("#password").val("");
           $("#passwordGroup").hide();
           $("#signinButton").html("Continue");
@@ -75,9 +76,11 @@
           $("#signinAlert").hide();
           $("#signinHelpAlert").hide();
           $("#emailLabel").html("Email");
+          $("#email").val("");
+          $("#password").val("");
           $("#passwordGroup").show();
           $("#signinButton").html("Sign in");
-          $("#toggleSignin").html("Forgot email or password?");
+          $("#toggleSignin").html("Forgot password?");
           
         }
       })
