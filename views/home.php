@@ -1,6 +1,6 @@
   <div class="container">
 
-    <h1>Welcome</h1>
+    <h1>Home page</h1>
 
   </div>
     

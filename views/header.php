@@ -39,8 +39,18 @@
           </li>
         </ul>
     
-        <div class="form-inline">
-          <button class="btn btn-outline-success" data-toggle="modal" data-target="#myModal">Sign in</button>
+        <div class="form-inline"> 
+          
+          <?php if (isset($_SESSION['id'])) { ?>
+          
+            <a class="btn btn-outline-success" href="?function=signout">Sign out</a>
+          
+          <?php } else { ?>
+
+            <button class="btn btn-outline-success" data-toggle="modal" data-target="#myModal">Sign in</button>
+          
+          <?php } ?>
+          
         </div>
         
       </div>

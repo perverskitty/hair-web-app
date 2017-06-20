@@ -15,4 +15,20 @@
   
   }
 
+  // check 'function' exists in the GET array
+  if ( isset($_GET['function']) ) {
+  
+    // logout function
+    if ($_GET['function'] == "signout") {
+    
+      session_unset();
+    
+    }
+  
+  
+  }
+
+
+  
+
 ?>

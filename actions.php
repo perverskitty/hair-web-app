@@ -42,12 +42,12 @@
         
       if ($row['password'] == md5(md5($row['id']).$_POST['password'])) {
         
+        // set session id to user id
+        $_SESSION['id'] = $row['id'];
+        
         // password match - successful sign in
         echo 1;
         
-        // set session id to user id
-        $_SESSION['id'] = $row['id'];
-          
       } else {
         
         // email address and/or password not found
@@ -110,15 +110,15 @@
       
       if (mysqli_query($link, $query)) {
         
+        // set session id to new user's id
+        $_SESSION['id'] = mysqli_insert_id($link);
+        
         // store user's password as a md5 hash
-        $query = "UPDATE users SET password = '".md5(md5(mysqli_insert_id($link)).$_POST['password'])."' WHERE id = ".mysqli_insert_id($link)." LIMIT 1";
+        $query = "UPDATE users SET password = '".md5(md5($_SESSION['id']).$_POST['password'])."' WHERE id = ".$_SESSION['id']." LIMIT 1";
         mysqli_query($link, $query);
         
         // sign up success
         echo 1;
-        
-        // set session id to new user's id
-        $_SESSION['id'] = mysqli_insert_id($link);
         
       } else {
         
