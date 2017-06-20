@@ -25,6 +25,8 @@
           </div>
           <div class="modal-body">
             <div class="alert alert-danger" id="signinAlert"></div>
+            <div class="alert alert-success" id="signinHelpAlert"></div>
+            
             <form>
               <input type="hidden" id="signinActive" name="signinActive" value="1">
               <div class="form-group">
@@ -36,6 +38,7 @@
                 <input type="password" class="form-control" id="password" placeholder="Password">
               </div>
             </form>
+            
           </div>
           <div class="modal-footer">
             <a id="toggleSignin" href="#">Forgot email or password?</a>
@@ -57,6 +60,7 @@
           $("#signinActive").val("0");
           $("#signinModalTitle").html("Having trouble signing in?");
           $("#emailLabel").html("<p><br>Enter your email and we'll send you a link to reset a forgotten password. If you're having problems, please visit the salon or call us.</p>");
+          $("#password").val("");
           $("#passwordGroup").hide();
           $("#signinButton").html("Continue");
           $("#toggleSignin").html("Return to sign in");
@@ -74,7 +78,7 @@
         }
       })
       
-      // function for signing in a user or sending a sign in recovery email
+      // function for signing in a user or for a password reset 
       $("#signinButton").click(function() {
         
         $.ajax({

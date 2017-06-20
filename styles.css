@@ -10,6 +10,10 @@
   display: none;
 }
 
+#signinHelpAlert {
+  display: none;
+}
+
 
 /* Perfect full page background image
 -------------------------------------------------- */
