@@ -2,7 +2,7 @@
   <footer class="footer">
       
       <div class="container">
-        <p>&copy; My Web App 2017</p>
+        <p>HairSalon, Street, Town, County, Postcode. Phone: 020 8123 4567</p>
       </div>
 
     </footer>

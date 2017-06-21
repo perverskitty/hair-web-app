@@ -29,13 +29,13 @@
         
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Option 3</a>
+            <a class="nav-link disabled" href="#">Option 1</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Option 2</a>
+            <a class="nav-link disabled" href="#">Option 2</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Option 3</a>
+            <a class="nav-link disabled" href="#">Option 3</a>
           </li>
         </ul>
     
