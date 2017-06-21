@@ -34,7 +34,7 @@
     if ($_POST['signinActive'] == "1") { 
       
       // check for user record with email match
-      $query = "SELECT * FROM users WHERE email = '".mysqli_real_escape_string($link, $_POST['email'])."' LIMIT 1";
+      $query = "SELECT * FROM hairdressers WHERE email = '".mysqli_real_escape_string($link, $_POST['email'])."' LIMIT 1";
       $result = mysqli_query($link, $query);
       
       // fetch associated user record
@@ -114,7 +114,7 @@
     } else {
       
       // sign up new user
-      $query = "INSERT INTO users (`email`, `password`) VALUES ('".mysqli_real_escape_string($link, $_POST['email'])."', '".mysqli_real_escape_string($link, $_POST['password'])."')";
+      $query = "INSERT INTO hairdressers (`email`, `password`) VALUES ('".mysqli_real_escape_string($link, $_POST['email'])."', '".mysqli_real_escape_string($link, $_POST['password'])."')";
       
       if (mysqli_query($link, $query)) {
         
@@ -122,7 +122,7 @@
         $_SESSION['id'] = mysqli_insert_id($link);
         
         // store user's password as a md5 hash
-        $query = "UPDATE users SET password = '".md5(md5($_SESSION['id']).$_POST['password'])."' WHERE id = ".$_SESSION['id']." LIMIT 1";
+        $query = "UPDATE hairdressers SET password = '".md5(md5($_SESSION['id']).$_POST['password'])."' WHERE id = ".$_SESSION['id']." LIMIT 1";
         mysqli_query($link, $query);
         
         // sign up success
