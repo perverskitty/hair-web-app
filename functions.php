@@ -4,7 +4,7 @@
   session_start();
 
   // connection to my database
-  $link = mysqli_connect("localhost", "root", "", "hairdb");
+  $link = mysqli_connect("127.0.0.1", "perverskitty", "", "hair_db", 3306);
 
   // check for a connection error
   if (mysqli_connect_errno()) {

@@ -97,7 +97,7 @@
             if (result =="1") {
               
               // do this when signed in
-              window.location.assign("http://localhost/projects/hair-web-app/");
+              window.location.assign("https://hair-web-app-perverskitty.c9users.io/index.php");
               
             } else if (result =="0") {
               
