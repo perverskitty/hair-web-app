@@ -347,7 +347,50 @@
       
       if ($_SESSION['id'] > 0) {
         
-        echo 'Display schedules content';
+        $query = "SELECT
+                  CONCAT(hairdressers.first_name, ' ', hairdressers.last_name) AS hairdresser,
+                  day_of_week AS day,
+                  CONCAT(schedules.start_time, ' to ', schedules.end_time) AS shift
+                FROM schedules
+                INNER JOIN hairdressers
+                  ON schedules.hairdresser_id = hairdressers.id
+                ORDER BY
+                  hairdressers.id,
+                  day_of_week,
+                  schedules.start_time";
+        $result = mysqli_query($link, $query);
+        
+        if (mysqli_num_rows($result) == 0) {
+          
+          echo "There are no schedules";
+          
+        } else {
+          
+          $schedulesTable = "<table class='table table-hover'>
+          <thead>
+            <tr>
+              <th>Hairdresser</th>
+              <th>Day</th>
+              <th>Working shift</th>
+            </tr>
+          </thead>
+          <tbody>";
+          
+          while ($row = mysqli_fetch_assoc($result)) {
+            
+            $schedulesTable .= "<tr>
+              <th scope='row'>".$row['hairdresser']."</th>
+              <td>".$row['day']."</td>
+              <td>".$row['shift']."</td>
+            </tr>";
+        
+          }
+          
+          $schedulesTable .= "</tbody></table>";
+          
+          echo $schedulesTable;
+          
+        }
         
       }
       

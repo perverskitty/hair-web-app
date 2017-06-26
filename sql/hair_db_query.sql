@@ -88,3 +88,17 @@ WHERE
     CONCAT(appt_date, ' ', appointments.end_time) >= NOW()
 ORDER BY
     appointments.hairdresser_id, appt_date, appointments.start_time;
+    
+    
+-- display all schedules ordered by hairdresser, day of the week, and time
+SELECT
+    CONCAT(hairdressers.first_name, ' ', hairdressers.last_name) AS hairdresser,
+    day_of_week AS day,
+    CONCAT(schedules.start_time, ' to ', schedules.end_time) AS shift
+FROM schedules
+INNER JOIN hairdressers
+ON schedules.hairdresser_id = hairdressers.id
+ORDER BY
+    hairdressers.id,
+    day_of_week,
+    schedules.start_time;
