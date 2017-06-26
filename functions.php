@@ -271,47 +271,62 @@
       if ($_SESSION['id'] > 0) {
         
         $query = "SELECT 
-                  id,
-                  category,
-                  title AS service,
-                  duration,
-                  price
-                FROM services";
+                  appt_date AS date,
+                  appointments.start_time AS start,
+                  appointments.end_time AS end,
+                  CONCAT(clients.first_name, ' ', clients.last_name) AS client,
+                  services.title AS service,
+                  CONCAT(hairdressers.first_name, ' ', hairdressers.last_name) AS hairdresser
+                FROM appointments
+                INNER JOIN clients
+                  ON appointments.client_id = clients.id
+                INNER JOIN services
+                  ON appointments.service_id = services.id
+                INNER JOIN hairdressers
+                  ON appointments.hairdresser_id = hairdressers.id
+                WHERE
+                  CONCAT(appt_date, ' ', appointments.end_time) >= NOW()
+                ORDER BY
+                  appointments.hairdresser_id, 
+                  appt_date, 
+                  appointments.start_time";
         $result = mysqli_query($link, $query);
         
         if (mysqli_num_rows($result) == 0) {
           
-          echo "There are no services";
+          echo "There are no appointments";
           
         } else {
           
-          $servicesTable = "<table class='table table-hover'>
+          $appointmentsTable = "<table class='table table-hover'>
           <thead>
             <tr>
-              <th>#</th>
-              <th>Category</th>
+              <th>Hairdresser</th>
+              <th>Date</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>Client</th>
               <th>Service</th>
-              <th>Duration (mins)</th>
-              <th>Price (£)</th>
             </tr>
           </thead>
           <tbody>";
           
           while ($row = mysqli_fetch_assoc($result)) {
             
-            $servicesTable .= "<tr>
-              <th scope='row'>".$row['id']."</th>
-              <td>".$row['category']."</td>
+            $appointmentsTable .= "<tr>
+              <th scope='row'>".$row['hairdresser']."</th>
+              <td>".$row['date']."</td>
+              <td>".$row['start']."</td>
+              <td>".$row['end']."</td>
+              <td>".$row['client']."</td>
               <td>".$row['service']."</td>
-              <td>".$row['duration']."</td>
-              <td>".$row['price']."</td>
             </tr>";
         
           }
           
-          $servicesTable .= "</tbody></table>";
+          $appointmentsTable .= "</tbody></table>";
           
-          echo $servicesTable;
+          echo $appointmentsTable;
           
         }
         
