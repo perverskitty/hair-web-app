@@ -120,53 +120,6 @@
           
         }
         
-        /*
-        echo "
-            <tr>
-              <th scope='row'>1</th>
-              <td>Ally Mucha</td>
-              <td>female</td>
-              <td>ally@client.com</td>
-              <td>07540 555 666</td>
-              <td>Peter Cheung</td>
-              <td>2017-06-25 18:07:56</td>
-              <td>2017-06-25 18:07:56</td>
-            </tr>
-            <tr>
-              <th scope='row'>2</th>
-              <td>Fee Day</td>
-              <td>female</td>
-              <td>fee@client.com</td>
-              <td>07540 666 777</td>
-              <td>Ren Calder</td>
-              <td>2017-06-25 18:07:56</td>
-              <td>2017-06-25 18:07:56</td>
-            </tr>
-            <tr>
-              <<th scope='row'>3</th>
-              <td>Sue Ochs</td>
-              <td>female</td>
-              <td>sue@client.com</td>
-              <td>07540 777 888</td>
-              <td>Lory Gill</td>
-              <td>2017-06-25 18:07:56</td>
-              <td>2017-06-25 18:07:56</td>
-            </tr>
-            <tr>
-              <<th scope='row'>4</th>
-              <td>Ben Thomas</td>
-              <td>male</td>
-              <td>ben@client.com</td>
-              <td>07540 888 999</td>
-              <td>None</td>
-              <td>2017-06-25 18:07:56</td>
-              <td>2017-06-25 18:07:56</td>
-            </tr>
-          </tbody>
-        </table>";
-        */
-        
-        
       }
       
     }
@@ -179,9 +132,64 @@
     
     if (isset($_SESSION['id'])) {
       
+      // access connection from inside this function
+      global $link;
+      
       if ($_SESSION['id'] > 0) {
         
-        echo 'Displaying hairdressers content';
+        $query = "SELECT 
+                  id,
+                  CONCAT(first_name, ' ', last_name) AS name,
+                  gender,
+                  email,
+                  tel,
+                  staff_type AS position,
+                  created_at AS created,
+                  changed_at AS changed
+                FROM hairdressers";
+        $result = mysqli_query($link, $query);
+        
+        if (mysqli_num_rows($result) == 0) {
+          
+          echo "There are no hairdressers";
+          
+        } else {
+          
+          $hairdressersTable = "<table class='table table-hover'>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Gender</th>
+              <th>Email</th>
+              <th>Tel</th>
+              <th>Position</th>
+              <th>Created</th>
+              <th>Changed</th>
+            </tr>
+          </thead>
+          <tbody>";
+          
+          while ($row = mysqli_fetch_assoc($result)) {
+            
+            $hairdressersTable .= "<tr>
+              <th scope='row'>".$row['id']."</th>
+              <td>".$row['name']."</td>
+              <td>".$row['gender']."</td>
+              <td>".$row['email']."</td>
+              <td>".$row['tel']."</td>
+              <td>".$row['position']."</td>
+              <td>".$row['created']."</td>
+              <td>".$row['changed']."</td>
+            </tr>";
+        
+          }
+          
+          $hairdressersTable .= "</tbody></table>";
+          
+          echo $hairdressersTable;
+          
+        }
         
       }
       

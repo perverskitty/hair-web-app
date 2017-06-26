@@ -34,14 +34,28 @@ SELECT DATEDIFF('2017-09-17 12:34:01', NOW()) <= 84;
 -- display all clients in the database
 SELECT 
     clients.id,
-    CONCAT(clients.first_name, ' ', clients.last_name) AS 'name',
+    CONCAT(clients.first_name, ' ', clients.last_name) AS name,
     clients.gender,
     clients.email,
-    CONCAT(hairdressers.first_name, ' ', hairdressers.last_name) AS 'hairdresser',
+    clients.tel,
+    CONCAT(hairdressers.first_name, ' ', hairdressers.last_name) AS hairdresser,
     clients.created_at AS created,
     clients.changed_at AS changed
 FROM clients
 LEFT JOIN hairdressers
 ON clients.hairdresser_id = hairdressers.id;
+    
+
+-- display all hairdressers in the database
+SELECT 
+    id,
+    CONCAT(first_name, ' ', last_name) AS name,
+    gender,
+    email,
+    tel,
+    staff_type AS position,
+    created_at AS created,
+    changed_at AS changed
+FROM hairdressers;
     
     
