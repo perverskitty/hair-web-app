@@ -203,9 +203,55 @@
     
     if (isset($_SESSION['id'])) {
       
+      // access connection from inside this function
+      global $link;
+      
       if ($_SESSION['id'] > 0) {
         
-        echo 'Displaying services content';
+        $query = "SELECT 
+                  id,
+                  category,
+                  title AS service,
+                  duration,
+                  price
+                FROM services";
+        $result = mysqli_query($link, $query);
+        
+        if (mysqli_num_rows($result) == 0) {
+          
+          echo "There are no services";
+          
+        } else {
+          
+          $servicesTable = "<table class='table table-hover'>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Category</th>
+              <th>Service</th>
+              <th>Duration (mins)</th>
+              <th>Price (£)</th>
+            </tr>
+          </thead>
+          <tbody>";
+          
+          while ($row = mysqli_fetch_assoc($result)) {
+            
+            $servicesTable .= "<tr>
+              <th scope='row'>".$row['id']."</th>
+              <td>".$row['category']."</td>
+              <td>".$row['service']."</td>
+              <td>".$row['duration']."</td>
+              <td>".$row['price']."</td>
+            </tr>";
+        
+          }
+          
+          $servicesTable .= "</tbody></table>";
+          
+          echo $servicesTable;
+          
+        }
         
       }
       
@@ -219,9 +265,55 @@
     
     if (isset($_SESSION['id'])) {
       
+      // access connection from inside this function
+      global $link;
+      
       if ($_SESSION['id'] > 0) {
         
-        echo 'Displaying appointments content';
+        $query = "SELECT 
+                  id,
+                  category,
+                  title AS service,
+                  duration,
+                  price
+                FROM services";
+        $result = mysqli_query($link, $query);
+        
+        if (mysqli_num_rows($result) == 0) {
+          
+          echo "There are no services";
+          
+        } else {
+          
+          $servicesTable = "<table class='table table-hover'>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Category</th>
+              <th>Service</th>
+              <th>Duration (mins)</th>
+              <th>Price (£)</th>
+            </tr>
+          </thead>
+          <tbody>";
+          
+          while ($row = mysqli_fetch_assoc($result)) {
+            
+            $servicesTable .= "<tr>
+              <th scope='row'>".$row['id']."</th>
+              <td>".$row['category']."</td>
+              <td>".$row['service']."</td>
+              <td>".$row['duration']."</td>
+              <td>".$row['price']."</td>
+            </tr>";
+        
+          }
+          
+          $servicesTable .= "</tbody></table>";
+          
+          echo $servicesTable;
+          
+        }
         
       }
       
@@ -232,6 +324,9 @@
   
    // Display schedules function
   function displaySchedules() {
+    
+    // access connection from inside this function
+    global $link;
     
     if (isset($_SESSION['id'])) {
       
