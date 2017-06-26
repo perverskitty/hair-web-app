@@ -38,6 +38,10 @@
           <a class="nav-link" href="?page=services">View services</a>
           <a class="nav-link" href="?page=appointments">View appointments</a>
           <a class="nav-link" href="?page=schedules">View schedules</a>
+          <a class="nav-link" href="?page=newclient">Add new client</a>
+          <a class="nav-link" href="?page=newhairdresser">Add new hairdresser</a>
+          <a class="nav-link" href="?page=newappointment">Add an appointment</a>
+          <a class="nav-link" href="?page=cancelappointment">Cancel an appointment</a>
         </nav>';
         
       } 

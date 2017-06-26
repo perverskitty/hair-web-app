@@ -29,25 +29,8 @@ INSERT INTO services (title, description, duration, category, price, created_at,
 
 -- appointments data
 INSERT INTO appointments (appt_date, start_time, end_time, duration, client_id, hairdresser_id, service_id, created_at, changed_at) VALUES
-('2017-07-27', '10:00:00', '11:00:00', '60', '1', '1', '1', null, null),
-('2017-07-15', '11:00:00', '13:00:00', '120', '2', '1', '5', null, null);
-INSERT INTO appointments (appt_date, start_time, end_time, duration, client_id, hairdresser_id, service_id, created_at, changed_at) VALUES
-('2017-07-27', '11:00:00', '14:00:00', '180', '3', '1', '10', null, null),
-('2017-07-27', '11:00:00', '13:00:00', '120', '4', '3', '5', null, null),
-('2017-07-27', '15:00:00', '16:00:00', '60', '2', '4', '1', null, null),
-('2017-07-28', '11:00:00', '13:00:00', '120', '1', '1', '5', null, null),
-
-('2017-07-15', '10:00:00', '11:00:00', '60', '4', '1', '2', null, null),
-('2017-07-15', '13:00:00', '14:00:00', '60', '3', '1', '1', null, null),
-('2017-07-15', '17:00:00', '19:00:00', '120', '1', '1', '7', null, null),
-('2017-07-16', '11:00:00', '13:00:00', '120', '3', '1', '8', null, null),
-
-('2017-07-09', '11:00:00', '13:00:00', '120', '2', '1', '5', null, null),
-('2017-07-12', '10:00:00', '11:00:00', '60', '1', '1', '1', null, null),
-('2017-07-19', '11:00:00', '13:00:00', '120', '2', '1', '5', null, null),
-('2017-07-05', '10:00:00', '11:00:00', '60', '1', '1', '1', null, null),
-('2017-07-20', '11:00:00', '13:00:00', '120', '2', '1', '5', null, null);
-
+('2017-07-27', '11:00:00', '14:00:00', '180', '2', '1', '10', null, null),
+('2017-07-27', '10:00:00', '11:00:00', '60', '1', '1', '1', null, null);
 
 -- salons data
 INSERT INTO salons (salon, day_of_week, open_time, close_time, created_at, changed_at) VALUES

@@ -3,7 +3,7 @@
     <div class="row" id="homeRowContent">
       
       <div class="col-sm-8" id="homeCol8" >
-        <h1>SCHEDULES</h1>
+        <h1>Schedules</h1>
         <?php displaySchedules(); ?>
       </div>
       

@@ -17,6 +17,14 @@
       include("views/appointments.php");
     } else if ($_GET['page'] == 'schedules') {
       include("views/schedules.php");
+    } else if ($_GET['page'] == 'newclient') {
+      include("views/newclient.php");
+    } else if ($_GET['page'] == 'newhairdresser') {
+      include("views/newhairdresser.php");
+    } else if ($_GET['page'] == 'newappointment') {
+      include("views/newappointment.php");
+    } else if ($_GET['page'] == 'cancelappointment') {
+      include("views/cancelappointment.php");
     }
     
   } else {

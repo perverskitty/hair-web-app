@@ -3,7 +3,7 @@
     <div class="row" id="homeRowContent">
       
       <div class="col-sm-8" id="homeCol8" >
-        <h1>CLIENTS</h1>
+        <h1>Clients</h1>
         <?php displayClients(); ?>
       </div>
       
