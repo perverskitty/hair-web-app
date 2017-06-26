@@ -1,7 +1,21 @@
-/* Navbar styles
+/* Content styles
 -------------------------------------------------- */
 
+h1 {
+  color: white;
+}
 
+#homeRowContent {
+  background-color: white;
+}
+
+#homeCol8 {
+  background-color: lightgrey;
+}
+
+#homeCol4 {
+  background-color: white;
+}
 
 
 /* Modal styles
