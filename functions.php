@@ -33,15 +33,11 @@
       if ($_SESSION['id'] > 0) {
         
         echo '<nav class="nav flex-column">
-          <a class="nav-link" href="#">Add new client</a>
-          <a class="nav-link" href="#">Add new hairdresser</a>
-          <a class="nav-link" href="#">Book appointment</a>
-          <a class="nav-link" href="#">Cancel appointment</a>
-          <a class="nav-link" href="#">View clients</a>
-          <a class="nav-link" href="#">View hairdressers</a>
-          <a class="nav-link" href="#">View appointments</a>
-          <a class="nav-link" href="#">View schedule</a>
-          <a class="nav-link" href="#">Search</a>
+          <a class="nav-link" href="?page=clients">View clients</a>
+          <a class="nav-link" href="?page=hairdressers">View hairdressers</a>
+          <a class="nav-link" href="?page=services">View services</a>
+          <a class="nav-link" href="?page=appointments">View appointments</a>
+          <a class="nav-link" href="?page=schedules">View schedules</a>
         </nav>';
         
       } 
