@@ -4,6 +4,7 @@
       
       <div class="col-sm-8" id="homeCol8" >
         <h1>CLIENTS</h1>
+        <?php displayClients(); ?>
       </div>
       
       <div class="col-sm-4" id="homeCol4">

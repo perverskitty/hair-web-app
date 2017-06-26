@@ -53,5 +53,85 @@
     
   }
   
+  
+  // Display clients function
+  function displayClients() {
+    
+    if (isset($_SESSION['id'])) {
+      
+      if ($_SESSION['id'] > 0) {
+        
+        echo 'Displaying clients content';
+        
+      }
+      
+    }
+    
+  }
+  
+  
+   // Display hairdressers function
+  function displayHairdressers() {
+    
+    if (isset($_SESSION['id'])) {
+      
+      if ($_SESSION['id'] > 0) {
+        
+        echo 'Displaying hairdressers content';
+        
+      }
+      
+    }
+    
+  }
+  
+  
+   // Display services function
+  function displayServices() {
+    
+    if (isset($_SESSION['id'])) {
+      
+      if ($_SESSION['id'] > 0) {
+        
+        echo 'Displaying services content';
+        
+      }
+      
+    }
+    
+  }
+  
+  
+   // Display appointments function
+  function displayAppointments() {
+    
+    if (isset($_SESSION['id'])) {
+      
+      if ($_SESSION['id'] > 0) {
+        
+        echo 'Displaying appointments content';
+        
+      }
+      
+    }
+    
+  }
+  
+  
+   // Display schedules function
+  function displaySchedules() {
+    
+    if (isset($_SESSION['id'])) {
+      
+      if ($_SESSION['id'] > 0) {
+        
+        echo 'Display schedules content';
+        
+      }
+      
+    }
+    
+  }
+  
 
 ?>
