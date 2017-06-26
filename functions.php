@@ -59,9 +59,32 @@
     
     if (isset($_SESSION['id'])) {
       
+      // access connection from inside this function
+      global $link;
+      
       if ($_SESSION['id'] > 0) {
         
-        echo '<table class="table table-hover">
+        $query = "SELECT 
+                  clients.id,
+                  CONCAT(clients.first_name, ' ', clients.last_name) AS name,
+                  clients.gender,
+                  clients.email,
+                  clients.tel,
+                  CONCAT(hairdressers.first_name, ' ', hairdressers.last_name) AS hairdresser,
+                  clients.created_at AS created,
+                  clients.changed_at AS changed
+                FROM clients
+                LEFT JOIN hairdressers
+                ON clients.hairdresser_id = hairdressers.id";
+        $result = mysqli_query($link, $query);
+        
+        if (mysqli_num_rows($result) == 0) {
+          
+          echo "There are no clients";
+          
+        } else {
+          
+          $clientsTable = "<table class='table table-hover'>
           <thead>
             <tr>
               <th>#</th>
@@ -69,14 +92,38 @@
               <th>Gender</th>
               <th>Email</th>
               <th>Tel</th>
-              <th>Haidresser</th>
+              <th>Hairdresser</th>
               <th>Created</th>
               <th>Changed</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody>";
+          
+          while ($row = mysqli_fetch_assoc($result)) {
+            
+            $clientsTable .= "<tr>
+              <th scope='row'>".$row['id']."</th>
+              <td>".$row['name']."</td>
+              <td>".$row['gender']."</td>
+              <td>".$row['email']."</td>
+              <td>".$row['tel']."</td>
+              <td>".$row['hairdresser']."</td>
+              <td>".$row['created']."</td>
+              <td>".$row['changed']."</td>
+            </tr>";
+        
+          }
+          
+          $clientsTable .= "</tbody></table>";
+          
+          echo $clientsTable;
+          
+        }
+        
+        /*
+        echo "
             <tr>
-              <th scope="row">1</th>
+              <th scope='row'>1</th>
               <td>Ally Mucha</td>
               <td>female</td>
               <td>ally@client.com</td>
@@ -86,7 +133,7 @@
               <td>2017-06-25 18:07:56</td>
             </tr>
             <tr>
-              <th scope="row">2</th>
+              <th scope='row'>2</th>
               <td>Fee Day</td>
               <td>female</td>
               <td>fee@client.com</td>
@@ -96,7 +143,7 @@
               <td>2017-06-25 18:07:56</td>
             </tr>
             <tr>
-              <<th scope="row">3</th>
+              <<th scope='row'>3</th>
               <td>Sue Ochs</td>
               <td>female</td>
               <td>sue@client.com</td>
@@ -106,7 +153,7 @@
               <td>2017-06-25 18:07:56</td>
             </tr>
             <tr>
-              <<th scope="row">4</th>
+              <<th scope='row'>4</th>
               <td>Ben Thomas</td>
               <td>male</td>
               <td>ben@client.com</td>
@@ -116,7 +163,9 @@
               <td>2017-06-25 18:07:56</td>
             </tr>
           </tbody>
-        </table>';
+        </table>";
+        */
+        
         
       }
       
