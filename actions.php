@@ -366,4 +366,12 @@
     
   
 
+  /* Book appointment
+  -------------------------------------------------- */
+  if ($_GET['action'] == "bookappointment") {
+   
+    print_r($_POST);
+    
+  }
+
 ?>

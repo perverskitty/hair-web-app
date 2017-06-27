@@ -29,8 +29,8 @@
             </div>
           </fieldset>
           <div class="form-group">
-            <label for="hd_tel">Mobile phone</label>
-            <input type="text" class="form-control" id="hd_tel" placeholder="Enter mobile phone">
+            <label for="hd_tel">Mobile</label>
+            <input type="text" class="form-control" id="hd_tel" placeholder="Enter mobile number">
           </div>
           <fieldset class="form-group">
             <legend>Staff type</legend>

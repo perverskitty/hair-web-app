@@ -1,6 +1,8 @@
 /*global $*/
 
-// function for 'add new client' button
+
+/* Add new client function
+-------------------------------------------------- */
 $("#add_client_button").click(function() { 
     
     $.ajax({
@@ -34,7 +36,8 @@ $("#add_client_button").click(function() {
 })
 
 
-// function for 'add new hairdresser' button
+/* Add new hairdresser function
+-------------------------------------------------- */
 $("#add_hd_button").click(function() { 
     
     $.ajax({
@@ -53,6 +56,39 @@ $("#add_hd_button").click(function() {
                 
                 // display success alert
                 alert("New hairdresser added!");
+                
+            } else {
+                
+                // display error alert
+                alert(result);
+                
+            }
+            
+          }
+          
+    })
+  
+})
+
+
+/* Add new appointment function
+-------------------------------------------------- */
+$("#book_appt_button").click(function() { 
+    
+    $.ajax({
+          type: "POST",
+          url: "actions.php?action=bookappointment",
+          data: "client=" + $("#select_client option:selected").val() 
+                + "&service=" + $("#select_service option:selected").val() 
+                + "&hairdresser=" + $("#select_hairdresser option:selected").val() 
+                + "&date=" + $("#select_date").val()
+                + "&time=" + $("#select_time option:selected").val(),
+          success: function(result) {
+            
+            if (result=='1') {
+                
+                // display success alert
+                alert("Appointment booked!");
                 
             } else {
                 

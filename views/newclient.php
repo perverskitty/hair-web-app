@@ -29,17 +29,18 @@
             </div>
           </fieldset>
           <div class="form-group">
-            <label for="client_tel">Mobile phone</label>
-            <input type="text" class="form-control" id="client_tel" placeholder="Enter mobile phone">
+            <label for="client_tel">Mobile</label>
+            <input type="text" class="form-control" id="client_tel" placeholder="Enter mobile number">
           </div>
           <div class="form-group">
             <label for="client_hairdreser">Favourite hairdresser</label>
             <select class="form-control" id="client_hairdresser">
-              <option value="0">None</option>
+              <option value="">No preference</option>
               <option value="1">Peter Cheung</option>
               <option value="2">Ren Calder</option>
               <option value="3">Lory Gill</option>
               <option value="4">Mike Harley</option>
+              <option value="5">Nathan Burton</option>
             </select>
           </div>
           <div class="form-group">
