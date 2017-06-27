@@ -13,6 +13,8 @@
             <label for="client_lastname">Last name</label>
             <input type="text" class="form-control" id="client_lastname" placeholder="Enter last name">
           </div>
+          <fieldset class="form-group">
+            <legend>Gender</legend>
             <div class="form-check">
               <label class="form-check-label">
                 <input type="radio" class="form-check-input client_gender" name="gender_radios" id="client_gender_m" value="m">
@@ -25,6 +27,7 @@
                 Female
               </label>
             </div>
+          </fieldset>
           <div class="form-group">
             <label for="client_tel">Mobile phone</label>
             <input type="text" class="form-control" id="client_tel" placeholder="Enter mobile phone">
