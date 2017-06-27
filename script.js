@@ -15,7 +15,17 @@ $("#add_client_button").click(function() {
                 + "&password=" + $("#client_password").val(),
           success: function(result) {
             
-            alert(result);
+            if (result=='1') {
+                
+                // display success alert
+                alert("New client added!");
+                
+            } else {
+                
+                // display error alert
+                alert(result);
+                
+            }
             
           }
           

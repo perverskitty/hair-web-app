@@ -205,6 +205,8 @@
       
     } else {
       
+      // need some code here to handle $_POST['hairdresser'] = '0'
+      
       // add a new client to the database
       $query = "INSERT INTO clients (
                 first_name,
