@@ -257,6 +257,14 @@
   }
   
   
+  /* Add new hairdresser
+  -------------------------------------------------- */
+  if ($_GET['action'] == "addhairdresser") { 
+    
+    print_r($_POST);
+    
+  }
+    
   
 
 ?>

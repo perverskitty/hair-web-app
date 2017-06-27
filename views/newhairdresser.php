@@ -36,13 +36,13 @@
             <legend>Staff type</legend>
             <div class="form-check">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input hd_type" name="gender_radios" id="hd_type_m" value="1">
+                <input type="radio" class="form-check-input hd_type" name="stafftype_radios" id="hd_type_m" value="1">
                 Manager
               </label>
             </div>
             <div class="form-check">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input hd_type" name="gender_radios" id="hd_type_f" value="2">
+                <input type="radio" class="form-check-input hd_type" name="stafftype_radios" id="hd_type_f" value="2">
                 Hairdresser
               </label>
             </div>
