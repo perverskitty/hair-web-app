@@ -153,9 +153,8 @@
   -------------------------------------------------- */
   if ($_GET['action'] == "addclient") {
     
-    // validate email and password
+    // input validation
     $error = "";
-    
     
     if (!$_POST['firstname']) {
       
@@ -261,7 +260,107 @@
   -------------------------------------------------- */
   if ($_GET['action'] == "addhairdresser") { 
     
-    print_r($_POST);
+    // input validation
+    $error = "";
+    
+    if (!$_POST['firstname']) {
+      
+      $error = "A first name is required";
+      
+    } else if (!$_POST['lastname']) {
+      
+      $error = "A last name is required";
+      
+    } else if ($_POST['gender'] == 'undefined') {
+      
+      $error = "A gender is required";
+    
+    } else if (!$_POST['tel']) {
+      
+      $error = "A mobile phone number is required";
+      
+    } else if ($_POST['stafftype'] == 'undefined') {
+      
+      $error = "A staff type is required";  
+        
+    } else if (!$_POST['email']) {
+      
+      $error = "An email address is required";
+      
+    } else if (!$_POST['password']) {
+      
+      $error = "A password is required";
+      
+    } else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
+      
+      $error = "Please enter a valid email address";
+      
+    }
+    
+    if ($error != "") {
+      
+      echo $error;
+      exit();
+      
+    }
+    
+    // check whether email address already exists in database
+    $query = "SELECT * FROM hairdressers WHERE email = '".mysqli_real_escape_string($link, $_POST['email'])."' LIMIT 1";
+    $result = mysqli_query($link, $query);
+    
+    if (mysqli_num_rows($result) > 0) {
+      
+      // notify if email already exists
+      $error = "That email address is already taken";
+      
+    } else {
+      
+      // insert new hairdresser into database
+      $query = "INSERT INTO hairdressers (
+                first_name,
+                last_name,
+                email,
+                password,
+                tel,
+                gender,
+                staff_type,
+                created_at,
+                changed_at)
+                VALUES ('"
+                .mysqli_real_escape_string($link, $_POST['firstname'])."', '"
+                .mysqli_real_escape_string($link, $_POST['lastname'])."', '"
+                .mysqli_real_escape_string($link, $_POST['email'])."', '"
+                .mysqli_real_escape_string($link, $_POST['password'])."', '"
+                .mysqli_real_escape_string($link, $_POST['tel'])."', '"
+                .mysqli_real_escape_string($link, $_POST['gender'])."', '"
+                .mysqli_real_escape_string($link, $_POST['stafftype'])."', null, null)";
+      
+      if (mysqli_query($link, $query)) {
+        
+        // store new hairdresser's password as md5 hash
+        $query = "UPDATE hairdressers 
+                  SET password = '".md5(md5(mysqli_insert_id($link)).$_POST['password']).
+                  "' WHERE id = ".mysqli_insert_id($link)." LIMIT 1";
+        mysqli_query($link, $query);
+        
+        // add hairdresser success
+        echo 1;
+        
+      } else {
+        
+        // add hairdresser fail
+        $error = "Couldn't add new hairdresser - please try again later";
+        
+      }
+      
+    }
+    
+    if ($error != "") {
+      
+      echo $error;
+      exit();
+      
+    }
     
   }
     

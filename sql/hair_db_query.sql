@@ -117,3 +117,18 @@ INSERT INTO clients (
     changed_at)
 VALUES
     ;
+    
+    
+-- add a new hairdresser to the database
+INSERT INTO hairdressers (
+    first_name, 
+    last_name,
+    email,
+    password,
+    tel,
+    gender,
+    staff_type,
+    created_at,
+    changed_at)
+VALUES
+    ;
