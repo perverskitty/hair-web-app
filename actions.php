@@ -153,13 +153,27 @@
   -------------------------------------------------- */
   if ($_GET['action'] == "addclient") {
     
-    print_r($_POST);
-    
-    /*
     // validate email and password
     $error = "";
     
-    if (!$_POST['email']) {
+    
+    if (!$_POST['firstname']) {
+      
+      $error = "A first name is required";
+      
+    } else if (!$_POST['lastname']) {
+      
+      $error = "A last name is required";
+      
+    } else if ($_POST['gender'] == 'undefined') {
+      
+      $error = "A gender is required";
+    
+    } else if (!$_POST['tel']) {
+      
+      $error = "A mobile phone number is required";
+        
+    } else if (!$_POST['email']) {
       
       $error = "An email address is required";
       
@@ -191,25 +205,41 @@
       
     } else {
       
-      // sign up new user
-      $query = "INSERT INTO hairdressers (`email`, `password`) VALUES ('".mysqli_real_escape_string($link, $_POST['email'])."', '".mysqli_real_escape_string($link, $_POST['password'])."')";
+      // add a new client to the database
+      $query = "INSERT INTO clients (
+                first_name,
+                last_name,
+                email,
+                password,
+                tel,
+                gender,
+                hairdresser_id,
+                created_at,
+                changed_at)
+                VALUES ('"
+                .mysqli_real_escape_string($link, $_POST['firstname'])."', '"
+                .mysqli_real_escape_string($link, $_POST['lastname'])."', '"
+                .mysqli_real_escape_string($link, $_POST['email'])."', '"
+                .mysqli_real_escape_string($link, $_POST['password'])."', '"
+                .mysqli_real_escape_string($link, $_POST['tel'])."', '"
+                .mysqli_real_escape_string($link, $_POST['gender'])."', '"
+                .mysqli_real_escape_string($link, $_POST['hairdresser'])."', null, null)";
       
       if (mysqli_query($link, $query)) {
         
-        // set session id to new user's id
-        $_SESSION['id'] = mysqli_insert_id($link);
-        
-        // store user's password as a md5 hash
-        $query = "UPDATE hairdressers SET password = '".md5(md5($_SESSION['id']).$_POST['password'])."' WHERE id = ".$_SESSION['id']." LIMIT 1";
+        // store new client's password as a md5 hash
+        $query = "UPDATE clients 
+                  SET password = '".md5(md5(mysqli_insert_id($link)).$_POST['password']).
+                  "' WHERE id = ".mysqli_insert_id($link)." LIMIT 1";
         mysqli_query($link, $query);
         
-        // sign up success
+        // add client success
         echo 1;
         
       } else {
         
-        // sign up fail
-        $error = "Couldn't create user - please try again later";
+        // add client fail
+        $error = "Couldn't add new client - please try again later";
         
       }
       
@@ -221,8 +251,6 @@
       exit();
       
     }
-    
-    */
     
   }
   

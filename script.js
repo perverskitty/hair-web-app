@@ -3,8 +3,6 @@
 // function for add new client button
 $("#add_client_button").click(function() { 
     
-    alert('add new client button was clicked');
-    
     $.ajax({
           type: "POST",
           url: "actions.php?action=addclient",

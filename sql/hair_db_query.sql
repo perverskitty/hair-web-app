@@ -102,3 +102,18 @@ ORDER BY
     hairdressers.id,
     day_of_week,
     schedules.start_time;
+
+
+-- add a new client to the database
+INSERT INTO clients (
+    first_name, 
+    last_name,
+    email,
+    password,
+    tel,
+    gender,
+    hairdresser_id,
+    created_at,
+    changed_at)
+VALUES
+    ;
