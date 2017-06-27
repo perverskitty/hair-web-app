@@ -414,24 +414,24 @@
     } else {
       
       // insert new appointment into database
-      $query = "INSERT INTO hairdressers (
-                first_name,
-                last_name,
-                email,
-                password,
-                tel,
-                gender,
-                staff_type,
+      $query = "INSERT INTO appointments (
+                appt_date,
+                start_time,
+                end_time,
+                duration,
+                client_id,
+                hairdresser_id,
+                service_id,
                 created_at,
                 changed_at)
                 VALUES ('"
-                .mysqli_real_escape_string($link, $_POST['firstname'])."', '"
-                .mysqli_real_escape_string($link, $_POST['lastname'])."', '"
-                .mysqli_real_escape_string($link, $_POST['email'])."', '"
-                .mysqli_real_escape_string($link, $_POST['password'])."', '"
-                .mysqli_real_escape_string($link, $_POST['tel'])."', '"
-                .mysqli_real_escape_string($link, $_POST['gender'])."', '"
-                .mysqli_real_escape_string($link, $_POST['stafftype'])."', null, null)";
+                .mysqli_real_escape_string($link, $_POST['date'])."', '"
+                .mysqli_real_escape_string($link, $_POST['time'])."', '"
+                .mysqli_real_escape_string($link, $_POST[''])."', '"
+                .mysqli_real_escape_string($link, $_POST[''])."', '"
+                .mysqli_real_escape_string($link, $_POST['client'])."', '"
+                .mysqli_real_escape_string($link, $_POST['hairdresser'])."', '"
+                .mysqli_real_escape_string($link, $_POST['service'])."', null, null)";
       
       if (mysqli_query($link, $query)) {
         

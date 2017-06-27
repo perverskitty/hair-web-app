@@ -132,3 +132,21 @@ INSERT INTO hairdressers (
     changed_at)
 VALUES
     ;
+
+
+
+-- insert an appointment
+INSERT INTO appointments (
+    appt_date, 
+    start_time,
+    end_time,
+    duration,
+    client_id,
+    hairdresser_id,
+    service_id,
+    created_at,
+    changed_at)
+VALUES
+    ;
+    
+    
