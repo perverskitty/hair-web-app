@@ -150,3 +150,22 @@ VALUES
     ;
     
     
+-- Find duration from service table for a given value
+SELECT
+    duration
+FROM services
+WHERE id = 2;
+
+
+
+
+-- show all appointments
+SELECT 
+    appt_date,
+    start_time,
+    end_time,
+    client_id,
+    hairdresser_id,
+    service_id 
+FROM appointments
+WHERE 
