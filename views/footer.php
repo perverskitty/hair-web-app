@@ -8,11 +8,13 @@
     </footer>
 
 
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <!-- jQuery first, then Tether, then Bootstrap JS, then my own script -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
+    <script type="text/javascript" src="script.js"></script>
+    
+    
     <!-- Bootstrap modal that appears when login button is clicked -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="signinModalTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -47,9 +49,9 @@
         </div>
       </div>
     </div>
-
-    <!-- My custom JavaScript to be moved into its own file later in development -->
-    <script>
+    
+    <script type="text/javascript">
+    // my custom JS to be consolidated in a separate file later
       
       // function for toggling between 'sign in' and 'sign in help' modes
       $("#toggleSignin").click(function() {
@@ -118,7 +120,7 @@
         })
         
       })
-
+    
     </script>
 
   </body>
