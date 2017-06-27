@@ -370,7 +370,89 @@
   -------------------------------------------------- */
   if ($_GET['action'] == "bookappointment") {
    
-    print_r($_POST);
+    // input validation
+    $error = "";
+    
+    if (!$_POST['client']) {
+      
+      $error = "A client is required";
+      
+    } else if (!$_POST['service']) {
+      
+      $error = "A service is required";
+      
+    } else if (!$_POST['hairdresser']) {
+      
+      $error = "A hairdresser is required";
+    
+    } else if (!$_POST['date']) {
+      
+      $error = "A date is required";
+      
+    } else if (!$_POST['time']) {
+      
+      $error = "A time is required";  
+        
+    } 
+    
+    if ($error != "") {
+      
+      echo $error;
+      exit();
+      
+    }
+    
+    // check if the hairdresser is available for date/time
+    $query = ; // code required
+    $result = mysqli_query($link, $query);
+    
+    if (mysqli_num_rows($result) > 0) {
+      
+      // notify if the hairdresser is unavailable for date/time
+      $error = "The hairdresser is unavailable - please try another date/time";
+      
+    } else {
+      
+      // insert new appointment into database
+      $query = "INSERT INTO hairdressers (
+                first_name,
+                last_name,
+                email,
+                password,
+                tel,
+                gender,
+                staff_type,
+                created_at,
+                changed_at)
+                VALUES ('"
+                .mysqli_real_escape_string($link, $_POST['firstname'])."', '"
+                .mysqli_real_escape_string($link, $_POST['lastname'])."', '"
+                .mysqli_real_escape_string($link, $_POST['email'])."', '"
+                .mysqli_real_escape_string($link, $_POST['password'])."', '"
+                .mysqli_real_escape_string($link, $_POST['tel'])."', '"
+                .mysqli_real_escape_string($link, $_POST['gender'])."', '"
+                .mysqli_real_escape_string($link, $_POST['stafftype'])."', null, null)";
+      
+      if (mysqli_query($link, $query)) {
+        
+        // book appointment success
+        echo 1;
+        
+      } else {
+        
+        // book appointment fail
+        $error = "Couldn't book the appointment - please try again later";
+        
+      }
+      
+    }
+    
+    if ($error != "") {
+      
+      echo $error;
+      exit();
+      
+    }
     
   }
 
