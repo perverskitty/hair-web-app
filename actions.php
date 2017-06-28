@@ -429,6 +429,12 @@
       $serviceQueryResult = mysqli_query($link, $serviceQuery); 
       $service = mysqli_fetch_assoc($serviceQueryResult);
       
+      // get endtime from service duration
+      $time1 = $_POST['time'];
+      $time2 = $service['duration'];
+      $secs = strtotime($time2) - strtotime("00:00:00");
+      $endtime = date("H:i:s", strtotime($time1) + $secs);
+      
       // check hairdresser work schedule for date/time
       $scheduleQuery = "SELECT * 
                 FROM schedules
@@ -483,6 +489,38 @@
           
           // book appointment
           print_r('all ok - go ahead and book appointment'); 
+          
+          /*
+          
+          // insert new appointment into database
+          $insertQuery = "INSERT INTO appointments (
+                    appt_date,
+                    start_time,
+                    end_time,
+                    client_id,
+                    hairdresser_id,
+                    service_id)
+                    VALUES ('"
+                    .mysqli_real_escape_string($link, $_POST['date'])."', '"
+                    .mysqli_real_escape_string($link, $_POST['time'])."', '"
+                    .mysqli_real_escape_string($link, $_POST[''])."', '"
+                    .mysqli_real_escape_string($link, $_POST['client'])."', '"
+                    .mysqli_real_escape_string($link, $_POST['hairdresser'])."', '"
+                    .mysqli_real_escape_string($link, $_POST['service'])."')";
+      
+          if (mysqli_query($link, $insertQuery)) {
+        
+            // book appointment success
+            echo 1;
+        
+          } else {
+        
+            // book appointment fail
+            $error = "Couldn't book appointment - please try again later";
+        
+          }
+          
+          */
           
         } 
         
