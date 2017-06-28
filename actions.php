@@ -402,16 +402,27 @@
       
     }
     
-    // check if the hairdresser is available for date/time
-    $query = ; // code required
+    // check salon opening times
+    $query = "SELECT *
+              FROM salons
+              WHERE DAYOFWEEK('"
+                .mysqli_real_escape_string($link, $_POST['date'])."') = day_of_week AND '"
+                .mysqli_real_escape_string($link, $_POST['time'])."' >= open_time AND '"
+                .mysqli_real_escape_string($link, $_POST['time'])."' < close_time";
     $result = mysqli_query($link, $query);
     
-    if (mysqli_num_rows($result) > 0) {
+    if (mysqli_num_rows($result) <= 0) {
       
-      // notify if the hairdresser is unavailable for date/time
-      $error = "The hairdresser is unavailable - please try another date/time";
+      // salon is closed
+      $error = "The salon is closed - please select another date/time";
       
     } else {
+      
+      print_r('Good news, salon is open');
+      
+      
+      
+      /*
       
       // insert new appointment into database
       $query = "INSERT INTO appointments (
@@ -444,6 +455,12 @@
         $error = "Couldn't book the appointment - please try again later";
         
       }
+      
+      */
+      
+      
+      
+      
       
     }
     

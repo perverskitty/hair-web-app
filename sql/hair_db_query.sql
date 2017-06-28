@@ -157,8 +157,6 @@ FROM services
 WHERE id = 2;
 
 
-
-
 -- show all appointments
 SELECT 
     appt_date,
@@ -169,3 +167,16 @@ SELECT
     service_id 
 FROM appointments
 WHERE 
+
+
+-- Is salon open for a given date 'YYYY-MM-DD' and time 'HH:MM:SS'
+SELECT
+    *
+FROM salons
+WHERE
+    DAYOFWEEK('2017-07-23') = day_of_week
+AND
+    '13:00:00' >= open_time
+AND
+    '13:00:00' <= close_time;
+    
