@@ -24,7 +24,7 @@ CREATE TABLE clients (
     password VARCHAR(255) NOT NULL,
     tel VARCHAR(255) NOT NULL,
     gender CHAR(1) NOT NULL,
-    hairdresser_id INT,
+    hairdresser_id INT DEFAULT 0 NOT NULL,
     created_at TIMESTAMP DEFAULT '0000-00-00 00:00:00',
     changed_at TIMESTAMP DEFAULT NOW() ON UPDATE CURRENT_TIMESTAMP
 );
@@ -34,7 +34,7 @@ CREATE TABLE services (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    duration INT NOT NULL,
+    duration TIME NOT NULL,
     category CHAR(1) NOT NULL,
     price DECIMAL(8,2) NOT NULL,
     created_at TIMESTAMP DEFAULT '0000-00-00 00:00:00',
@@ -47,7 +47,6 @@ CREATE TABLE appointments (
     appt_date DATE NOT NULL,
     start_time TIME NOT NULL,
     end_time TIME NOT NULL,
-    duration INT NOT NULL,
     client_id INT NOT NULL,
     hairdresser_id INT NOT NULL,
     service_id INT NOT NULL,

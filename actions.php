@@ -411,13 +411,14 @@
                 .mysqli_real_escape_string($link, $_POST['time'])."' < close_time";
     $result = mysqli_query($link, $query);
     
-    if (mysqli_num_rows($result) <= 0) {
+    if (!mysqli_num_rows($result)) {
       
-      // salon is closed
+      // salon closed
       $error = "The salon is closed - please select another date/time";
       
     } else {
       
+      // salon open
       print_r('Good news, salon is open');
       
       

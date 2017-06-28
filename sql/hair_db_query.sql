@@ -180,3 +180,14 @@ AND
 AND
     '13:00:00' <= close_time;
     
+
+-- Is there enough time to carry out service for a given date/time
+
+-- this converts duration into HH:MM:SS format 
+SELECT SEC_TO_TIME(duration * 60) FROM services WHERE id = 2;
+
+-- this sums two time values together
+SELECT ADDTIME('15:00:00', '02:00:00');
+
+
+
