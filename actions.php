@@ -414,12 +414,12 @@
     if (!mysqli_num_rows($result)) {
       
       // salon closed
-      $error = "Salon closed - please select another date/time";
+      $error = "Salon closed - please try another date and time";
       
     } else {
       
       // salon open
-      print_r('Good news, salon is open');
+      // print_r('Good news, salon is open');
       
       // get service duration in hh:mm:ss 
       $serviceQuery = "SELECT duration
@@ -435,38 +435,34 @@
       $secs = strtotime($time2) - strtotime("00:00:00");
       $endtime = date("H:i:s", strtotime($time1) + $secs);
       
-      // check hairdresser work schedule for date/time
+      // check hairdresser schedule availability
       $scheduleQuery = "SELECT * 
                 FROM schedules
                 WHERE hairdresser_id =" 
                 .mysqli_real_escape_string($link, $_POST['hairdresser'])." AND DAYOFWEEK('"
                 .mysqli_real_escape_string($link, $_POST['date'])."') = day_of_week AND '"
-                .mysqli_real_escape_string($link, $_POST['time'])."' >= start_time AND ADDTIME('"
-                .mysqli_real_escape_string($link, $_POST['time'])."', '"
-                .mysqli_real_escape_string($link, $service['duration'])."') <= end_time LIMIT 1";
+                .mysqli_real_escape_string($link, $_POST['time'])."' >= start_time AND '"
+                .mysqli_real_escape_string($link, $endtime)."' <= end_time LIMIT 1";
       $scheduleQueryResult = mysqli_query($link, $scheduleQuery);
       
       if (!mysqli_num_rows($scheduleQueryResult)) {
         
         // insufficient time or hairdresser unavailable
-        $error = "Insufficient time or hairdresser unavailable - please select another date/time";
+        $error = "Insufficient time or hairdresser unavailable - please select another date and time";
         
       } else {
         
         // hairdresser available existing appointments notwithstanding
-        print_r('Hairdresser available!');
+        // print_r('Hairdresser available!');
         
-        
-        
-        // does hairdresser have appointment clashes
+        // check availability with existing appointments
         $appointmentQuery = "SELECT * 
                               FROM appointments
                               WHERE appt_date = '"
                               .mysqli_real_escape_string($link, $_POST['date'])."' AND hairdresser_id = "
                               .mysqli_real_escape_string($link, $_POST['hairdresser'])." AND '"
-                              .mysqli_real_escape_string($link, $_POST['time'])."' >= start_time AND ADDTIME('"
-                              .mysqli_real_escape_string($link, $_POST['time'])."', '"
-                              .mysqli_real_escape_string($link, $service['duration'])."') <= end_time LIMIT 1";
+                              .mysqli_real_escape_string($link, $_POST['time'])."' >= start_time AND '"
+                              .mysqli_real_escape_string($link, $endtime)."' <= end_time LIMIT 1";
         $appointmentQueryResult = mysqli_query($link, $appointmentQuery);
         
         if (mysqli_num_rows($appointmentQueryResult) > 0) {
@@ -481,14 +477,14 @@
           } else {
             
             // an appointment clash
-            $error = "Appointment clash - please select another date/time";
+            $error = "Appointment clash - please select another date and time";
             
           }
           
         } else {
           
           // book appointment
-          print_r('all ok - go ahead and book appointment'); 
+          //print_r('all ok - go ahead and book appointment'); 
           
           // insert new appointment into database
           $insertQuery = "INSERT INTO appointments (

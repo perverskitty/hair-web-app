@@ -85,7 +85,7 @@ $("#book_appt_button").click(function() {
                 + "&time=" + $("#select_time option:selected").val(),
           success: function(result) {
             
-            if (result=='1') {
+            if (result == '1') {
                 
                 // display success alert
                 alert("Appointment booked!");
