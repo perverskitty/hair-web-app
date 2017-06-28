@@ -188,6 +188,14 @@ SELECT ADDTIME('15:00:00', '02:00:00');
 
 SELECT * FROM schedules
 WHERE hairdresser_id = 1 
-AND DAYOFWEEK('2017-7-23') = day_of_week
+AND DAYOFWEEK('2017-07-23') = day_of_week
+AND '13:00:00' >= start_time
+AND ADDTIME('13:00:00', '01:00:00') <= end_time;
+
+
+-- show all appointments that clash 
+SELECT * FROM appointments
+WHERE appt_date = '2017-07-27'
+AND hairdresser_id = 1
 AND '13:00:00' >= start_time
 AND ADDTIME('13:00:00', '01:00:00') <= end_time;

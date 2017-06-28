@@ -447,49 +447,46 @@
         
       } else {
         
-        print_r('Good news, the hairdresser is available');
+        // hairdresser available existing appointments notwithstanding
+        print_r('Hairdresser available!');
+        
+        
+        
+        // does hairdresser have appointment clashes
+        $appointmentQuery = "SELECT * 
+                              FROM appointments
+                              WHERE appt_date = '"
+                              .mysqli_real_escape_string($link, $_POST['date'])."' AND hairdresser_id = "
+                              .mysqli_real_escape_string($link, $_POST['hairdresser'])." AND '"
+                              .mysqli_real_escape_string($link, $_POST['time'])."' >= start_time AND ADDTIME('"
+                              .mysqli_real_escape_string($link, $_POST['time'])."', '"
+                              .mysqli_real_escape_string($link, $service['duration'])."') <= end_time LIMIT 1";
+        $appointmentQueryResult = mysqli_query($link, $appointmentQuery);
+        
+        if (mysqli_num_rows($appointmentQueryResult) > 0) {
+          
+          $appointment = mysqli_fetch_assoc($appointmentQueryResult);
+          
+          if ($_POST['client'] == $appointment['client_id']) {
+            
+            // an appointment for the client with hairdresser at date/time already exists
+            $error = "The appointment already exists";
+            
+          } else {
+            
+            // an appointment clash
+            $error = "Appointment clash - please select another date/time";
+            
+          }
+          
+        } else {
+          
+          // book appointment
+          print_r('all ok - go ahead and book appointment'); 
+          
+        } 
         
       }
-      
-      
-      
-      /*
-      
-      // insert new appointment into database
-      $query = "INSERT INTO appointments (
-                appt_date,
-                start_time,
-                end_time,
-                client_id,
-                hairdresser_id,
-                service_id,
-                created_at,
-                changed_at)
-                VALUES ('"
-                .mysqli_real_escape_string($link, $_POST['date'])."', '"
-                .mysqli_real_escape_string($link, $_POST['time'])."', '"
-                .mysqli_real_escape_string($link, $_POST[''])."', '"
-                .mysqli_real_escape_string($link, $_POST['client'])."', '"
-                .mysqli_real_escape_string($link, $_POST['hairdresser'])."', '"
-                .mysqli_real_escape_string($link, $_POST['service'])."', null, null)";
-      
-      if (mysqli_query($link, $query)) {
-        
-        // book appointment success
-        echo 1;
-        
-      } else {
-        
-        // book appointment fail
-        $error = "Couldn't book the appointment - please try again later";
-        
-      }
-      
-      */
-      
-      
-      
-      
       
     }
     
@@ -501,5 +498,7 @@
     }
     
   }
+
+
 
 ?>
