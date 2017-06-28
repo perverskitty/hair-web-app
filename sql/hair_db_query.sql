@@ -183,11 +183,11 @@ AND
 
 -- Is there enough time to carry out service for a given date/time
 
--- this converts duration into HH:MM:SS format 
-SELECT SEC_TO_TIME(duration * 60) FROM services WHERE id = 2;
-
--- this sums two time values together
 SELECT ADDTIME('15:00:00', '02:00:00');
 
 
-
+SELECT * FROM schedules
+WHERE hairdresser_id = 1 
+AND DAYOFWEEK('2017-7-23') = day_of_week
+AND '13:00:00' >= start_time
+AND ADDTIME('13:00:00', '01:00:00') <= end_time;

@@ -414,12 +414,42 @@
     if (!mysqli_num_rows($result)) {
       
       // salon closed
-      $error = "The salon is closed - please select another date/time";
+      $error = "Salon closed - please select another date/time";
       
     } else {
       
       // salon open
       print_r('Good news, salon is open');
+      
+      // get service duration in hh:mm:ss 
+      $serviceQuery = "SELECT duration
+                        FROM services
+                        WHERE id ="
+                        .mysqli_real_escape_string($link, $_POST['service'])." LIMIT 1";
+      $serviceQueryResult = mysqli_query($link, $serviceQuery); 
+      $service = mysqli_fetch_assoc($serviceQueryResult);
+      
+      // check hairdresser work schedule for date/time
+      $scheduleQuery = "SELECT * 
+                FROM schedules
+                WHERE hairdresser_id =" 
+                .mysqli_real_escape_string($link, $_POST['hairdresser'])." AND DAYOFWEEK('"
+                .mysqli_real_escape_string($link, $_POST['date'])."') = day_of_week AND '"
+                .mysqli_real_escape_string($link, $_POST['time'])."' >= start_time AND ADDTIME('"
+                .mysqli_real_escape_string($link, $_POST['time'])."', '"
+                .mysqli_real_escape_string($link, $service['duration'])."') <= end_time LIMIT 1";
+      $scheduleQueryResult = mysqli_query($link, $scheduleQuery);
+      
+      if (!mysqli_num_rows($scheduleQueryResult)) {
+        
+        // insufficient time or hairdresser unavailable
+        $error = "Insufficient time or hairdresser unavailable - please select another date/time";
+        
+      } else {
+        
+        print_r('Good news, the hairdresser is available');
+        
+      }
       
       
       
@@ -430,7 +460,6 @@
                 appt_date,
                 start_time,
                 end_time,
-                duration,
                 client_id,
                 hairdresser_id,
                 service_id,
@@ -439,7 +468,6 @@
                 VALUES ('"
                 .mysqli_real_escape_string($link, $_POST['date'])."', '"
                 .mysqli_real_escape_string($link, $_POST['time'])."', '"
-                .mysqli_real_escape_string($link, $_POST[''])."', '"
                 .mysqli_real_escape_string($link, $_POST[''])."', '"
                 .mysqli_real_escape_string($link, $_POST['client'])."', '"
                 .mysqli_real_escape_string($link, $_POST['hairdresser'])."', '"
