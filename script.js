@@ -102,3 +102,32 @@ $("#book_appt_button").click(function() {
     })
   
 })
+
+
+/* Cancel appointment function
+-------------------------------------------------- */
+$("#cancel_appt_button").click(function() { 
+    
+    $.ajax({
+          type: "POST",
+          url: "actions.php?action=cancelappointment",
+          data: "id=" + $("#cancel_id").val(),
+          success: function(result) {
+            
+            if (result == '1') {
+                
+                // display success alert
+                alert("Appointment cancelled");
+                
+            } else {
+                
+                // display error alert
+                alert(result);
+                
+            }
+            
+          }
+          
+    })
+  
+})
