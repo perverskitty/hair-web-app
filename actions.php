@@ -530,5 +530,55 @@
   }
 
 
+/* Cancel appointment
+  -------------------------------------------------- */
+  if ($_GET['action'] == "cancelappointment") {
+    
+    // input validation
+    $error = "";
+    
+    if (!$_POST['id']) {
+      
+      $error = "An ID is required";
+      
+    } else if (($_POST['id']) < 1) {
+      
+      $error = "Please enter a valid ID";
+      
+    }  
+    
+    if ($error != "") {
+      
+      echo $error;
+      exit();
+      
+    }
+    
+    
+    // delete appointment from database
+    $query = "DELETE FROM appointments WHERE id = ".mysqli_real_escape_string($link, $_POST['id']);
+      
+    if (mysqli_query($link, $query)) {
+        
+      // delete appointment success
+      echo 1;
+        
+    } else {
+        
+      // book appointment fail
+      $error = "Couldn't cancel appointment - please try again later";
+        
+    }
+    
+    if ($error != "") {
+      
+      echo $error;
+      exit();
+      
+    }
+    
+  }
+
+
 
 ?>
