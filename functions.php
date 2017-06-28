@@ -275,6 +275,7 @@
       if ($_SESSION['id'] > 0) {
         
         $query = "SELECT 
+                  appointments.id AS id,
                   appt_date AS date,
                   appointments.start_time AS start,
                   appointments.end_time AS end,
@@ -291,8 +292,8 @@
                 WHERE
                   CONCAT(appt_date, ' ', appointments.end_time) >= NOW()
                 ORDER BY
+                  appt_date,
                   appointments.hairdresser_id, 
-                  appt_date, 
                   appointments.start_time";
         $result = mysqli_query($link, $query);
         
@@ -305,12 +306,13 @@
           $appointmentsTable = "<table class='table table-hover'>
           <thead>
             <tr>
-              <th>Hairdresser</th>
               <th>Date</th>
               <th>Start</th>
               <th>End</th>
+              <th>Hairdresser</th>
               <th>Client</th>
               <th>Service</th>
+              <th>Appointment ID</th>
             </tr>
           </thead>
           <tbody>";
@@ -318,12 +320,13 @@
           while ($row = mysqli_fetch_assoc($result)) {
             
             $appointmentsTable .= "<tr>
-              <th scope='row'>".$row['hairdresser']."</th>
-              <td>".$row['date']."</td>
+              <th scope='row'>".$row['date']."</th>
               <td>".$row['start']."</td>
               <td>".$row['end']."</td>
+              <td>".$row['hairdresser']."</td>
               <td>".$row['client']."</td>
               <td>".$row['service']."</td>
+              <td>".$row['id']."</td>
             </tr>";
         
           }
