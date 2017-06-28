@@ -557,7 +557,8 @@
     
     // check whether appointment exists AND is current before attempting to delete  
     
-    $query = "SELECT * FROM appointments"; // to complete
+    $query = "SELECT * FROM appointments WHERE id = "
+              .mysqli_real_escape_string($link, $_POST['id'])." AND CONCAT(appt_date, ' ' , end_time) >= NOW()";
     $result = mysqli_query($link, $query);
     
     if (!mysqli_num_rows($result)) {
