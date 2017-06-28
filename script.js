@@ -71,7 +71,7 @@ $("#add_hd_button").click(function() {
 })
 
 
-/* Add new appointment function
+/* Book new appointment function
 -------------------------------------------------- */
 $("#book_appt_button").click(function() { 
     

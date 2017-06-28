@@ -490,8 +490,6 @@
           // book appointment
           print_r('all ok - go ahead and book appointment'); 
           
-          /*
-          
           // insert new appointment into database
           $insertQuery = "INSERT INTO appointments (
                     appt_date,
@@ -503,7 +501,7 @@
                     VALUES ('"
                     .mysqli_real_escape_string($link, $_POST['date'])."', '"
                     .mysqli_real_escape_string($link, $_POST['time'])."', '"
-                    .mysqli_real_escape_string($link, $_POST[''])."', '"
+                    .mysqli_real_escape_string($link, $endtime)."', '"
                     .mysqli_real_escape_string($link, $_POST['client'])."', '"
                     .mysqli_real_escape_string($link, $_POST['hairdresser'])."', '"
                     .mysqli_real_escape_string($link, $_POST['service'])."')";
@@ -519,8 +517,6 @@
             $error = "Couldn't book appointment - please try again later";
         
           }
-          
-          */
           
         } 
         
