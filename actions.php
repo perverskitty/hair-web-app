@@ -555,19 +555,33 @@
     }
     
     
-    // delete appointment from database
-    $query = "DELETE FROM appointments WHERE id = ".mysqli_real_escape_string($link, $_POST['id']);
+    // check whether appointment exists AND is current before attempting to delete  
+    
+    $query = "SELECT * FROM appointments"; // to complete
+    $result = mysqli_query($link, $query);
+    
+    if (!mysqli_num_rows($result)) {
       
-    if (mysqli_query($link, $query)) {
-        
-      // delete appointment success
-      echo 1;
-        
+      // nothing to delete
+      $error = "A current appointment with matching ID could not be found";
+      
     } else {
+      
+      // delete appointment from database
+      $deleteQuery = "DELETE FROM appointments WHERE id = ".mysqli_real_escape_string($link, $_POST['id']);
+      
+      if (mysqli_query($link, $deleteQuery)) {
         
-      // book appointment fail
-      $error = "Couldn't cancel appointment - please try again later";
+        // delete appointment success
+        echo 1;
         
+      } else {
+        
+        // book appointment fail
+        $error = "Couldn't cancel appointment - please try again later";
+        
+      }
+      
     }
     
     if ($error != "") {
